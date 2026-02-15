@@ -17,15 +17,15 @@
     'use strict';
 
     // ==================== 配置区域 ====================
-    // 请在这里填入你的 Raindrop API Token
-    // 获取方式：https://app.raindrop.io/settings/integrations
-    const RAINDROP_TOKEN = GM_getValue('raindrop_token', '');
+    // 【重要】请在下方引号中填入你的 Raindrop API Token
+    // 获取方式：登录 Raindrop.io → Settings → Integrations → Create new app → 复制 Test token
+    // 获取地址：https://app.raindrop.io/settings/integrations
+    const RAINDROP_TOKEN = '';  // ← 请在这里填入你的 token
 
-    // 如果没有配置 token，提示用户
-    if (!RAINDROP_TOKEN) {
-        console.log('[Bilibili-Raindrop] 请先配置 Raindrop API Token');
-        console.log('[Bilibili-Raindrop] 在控制台执行: GM_setValue("raindrop_token", "你的token")');
-        alert('请先配置 Raindrop API Token\n\n在浏览器控制台执行：\nGM_setValue("raindrop_token", "你的token")\n\n获取 token: https://app.raindrop.io/settings/integrations');
+    // 检查 token 是否已配置
+    if (!RAINDROP_TOKEN || RAINDROP_TOKEN.trim() === '') {
+        alert('⚠️ Bilibili Raindrop 收藏标记\n\n请先配置 Raindrop API Token！\n\n配置步骤：\n1. 点击 Tampermonkey 图标\n2. 选择"管理面板"\n3. 找到本脚本并点击"编辑"\n4. 在第 23 行填入你的 token\n5. 保存后刷新页面\n\n获取 Token：\nhttps://app.raindrop.io/settings/integrations');
+        console.error('[Bilibili-Raindrop] 未配置 Token，脚本已停止运行');
         return;
     }
 

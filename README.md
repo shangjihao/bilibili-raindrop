@@ -1,12 +1,8 @@
 # Bilibili Raindrop 收藏标记
 
-这是一个油猴脚本，用于在 bilibili 收藏夹页面标记已收藏到 Raindrop 的视频。
+这是一个油猴脚本，用于在 bilibili 收藏夹页面标记已收藏到 Raindrop 的视频，效果如下：
 
-## 功能
-
-- 自动检测 bilibili 收藏夹中的视频
-- 对比 Raindrop 中的收藏
-- 在已收藏的视频右上角显示蓝色对勾 ✓
+<img width="1212" height="502" alt="image" src="https://github.com/user-attachments/assets/0f9ba7d4-da49-40b0-aa8d-b8f806538d2e" />
 
 ## 安装步骤
 
@@ -33,15 +29,19 @@
 
 ### 4. 配置 Token
 
-1. 打开任意 bilibili 收藏夹页面
-2. 按 F12 打开浏览器控制台
-3. 在控制台中输入以下命令（替换成你的 token）：
-
-```javascript
-GM_setValue("raindrop_token", "你的_Raindrop_Token")
-```
-
-4. 刷新页面
+1. 点击油猴图标 → 管理面板
+2. 找到 "Bilibili Raindrop 收藏标记" 脚本
+3. 点击脚本名称右侧的"编辑"按钮
+4. 找到第 23 行的配置区域：
+   ```javascript
+   const RAINDROP_TOKEN = '';  // ← 请在这里填入你的 token
+   ```
+5. 将你的 token 填入单引号中：
+   ```javascript
+   const RAINDROP_TOKEN = 'your_token_here';
+   ```
+6. 保存脚本（Ctrl+S 或 Cmd+S）
+7. 刷新 bilibili 页面
 
 ## 使用方法
 
@@ -64,7 +64,7 @@ GM_setValue("raindrop_token", "你的_Raindrop_Token")
 
 ### 没有显示对勾
 
-1. 检查是否正确配置了 Raindrop Token
+1. 检查是否正确配置了 Raindrop Token（在脚本第 23 行）
 2. 打开浏览器控制台（F12），查看是否有错误信息
 3. 查看控制台日志，应该能看到类似以下信息：
    - `[Bilibili-Raindrop] 开始获取 Raindrop 收藏...`
@@ -73,11 +73,12 @@ GM_setValue("raindrop_token", "你的_Raindrop_Token")
    - `[Bilibili-Raindrop] 标记视频: BVxxxxxxxx`
 4. 确认 Raindrop 中确实收藏了该视频（URL 中包含完整的 BV 号）
 
-### Token 配置失败
+### Token 配置问题
 
-- 确保 token 用引号包裹
+- 确保 token 填写在单引号内：`const RAINDROP_TOKEN = 'your_token';`
 - 确保没有多余的空格
-- 可以在控制台输入 `GM_getValue("raindrop_token")` 检查是否配置成功
+- 保存脚本后需要刷新页面才能生效
+- 如果首次访问页面弹出提示框，说明 token 未配置或为空
 
 ### 页面样式问题
 
